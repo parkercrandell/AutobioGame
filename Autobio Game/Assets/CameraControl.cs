@@ -19,6 +19,8 @@ public class CameraControl : MonoBehaviour
 
     public GameObject book;
 
+    public GameObject comp;
+
     public bool start;
     public float lerpTime = 0;
 
@@ -41,6 +43,7 @@ public class CameraControl : MonoBehaviour
         gumbandTran = gumband.GetComponent<Transform>();
         lampT = lamp.GetComponent<Transform>();
         //myScript = player.GetComponent<sphereMovement>();
+        curr = comp;
     }
 
     void Update()
@@ -88,7 +91,7 @@ public class CameraControl : MonoBehaviour
         }
         else
         {
-            curr = myScript.getCurrObject();
+            //curr = myScript.getCurrObject();
             startLerp(curr);
         }
 
@@ -112,6 +115,12 @@ public class CameraControl : MonoBehaviour
         start = true;
         currentTransform = g.GetComponent<Transform>();
 
+    }
+
+    public void setCurrObject(GameObject g)
+    {
+        Debug.Log("switch");
+        curr = g;
     }
 }
 
