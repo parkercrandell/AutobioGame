@@ -8,15 +8,22 @@ public class ControlerManager : MonoBehaviour
     public sphereMovement theScript;
     public bool awake = false;
 
+    public GameObject playerTrigger;
+
     public float outputDelayTimer = 10;
     public float outputDelay = 1;
     public bool delayTimerOn = true;
+
+    public GameObject pCamera;
     //controler each object has so player can activate and deactivate objects and interface with their unique controler scripts
 
     void Start()
     {
         player = GameObject.Find("Player");
+        playerTrigger = this.gameObject;
         theScript = player.GetComponent<sphereMovement>();
+        pCamera = GameObject.Find("Camera");
+        playerTrigger.transform.LookAt(pCamera.transform);
     }
 
     // Update is called once per frame

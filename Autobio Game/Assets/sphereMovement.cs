@@ -98,7 +98,7 @@ public class sphereMovement : MonoBehaviour
     public void activatePlayer()
     {
         active = true;
-        transform.position = currObject.transform.position;
+        transform.position = new Vector3(currObject.transform.position.x, currObject.transform.position.y, orgpos.z);
         currObject = table;
         insideCol = false;
         delayTimerReset();

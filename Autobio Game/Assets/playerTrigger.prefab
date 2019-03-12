@@ -60,6 +60,8 @@ MonoBehaviour:
   player: {fileID: 0}
   theScript: {fileID: 0}
   awake: 0
+  playerTrigger: {fileID: 0}
   outputDelayTimer: 10
   outputDelay: 1
   delayTimerOn: 0
+  pCamera: {fileID: 0}

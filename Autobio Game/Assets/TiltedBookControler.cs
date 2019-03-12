@@ -22,6 +22,8 @@ public class TiltedBookControler : MonoBehaviour
     public Vector3 orgPos;
     public Quaternion orgRot;
 
+    public bool look = false;
+
     public Vector3 hitPos;
     public float hitPosYOff = 1.3f;
     public float hitPosXOff = 0.2f;
@@ -65,7 +67,12 @@ public class TiltedBookControler : MonoBehaviour
 
         if (fallen && transform.position.y < 7.5f)
         {
-            camScript.setCurrObject(this.gameObject);
+            if (!look)
+            {
+                camScript.setCurrObject(this.gameObject);
+                look = true;
+            }
+
         }
     }
 }

@@ -122,5 +122,11 @@ public class CameraControl : MonoBehaviour
         Debug.Log("switch");
         curr = g;
     }
+
+    public void resetCurr()
+    {
+        curr = comp;
+    }
+
 }
 
