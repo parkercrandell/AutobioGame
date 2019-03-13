@@ -17,7 +17,7 @@ public class TiltedBookControler : MonoBehaviour
     public bool fallen = false;
 
     public GameObject cameraP;
-    public CameraControl camScript;
+    public  LevelManager lvl;
 
     public Vector3 orgPos;
     public Quaternion orgRot;
@@ -31,6 +31,8 @@ public class TiltedBookControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //orgRot = transform.rotation;
+
         player = GameObject.Find("Player");
         theScript = player.GetComponent<sphereMovement>();
         originalPos = transform.position;
@@ -39,10 +41,10 @@ public class TiltedBookControler : MonoBehaviour
         thisRigidBody = transform.GetComponent<Rigidbody>();
 
         cameraP = GameObject.Find("Camera");
-        camScript = cameraP.GetComponent<CameraControl>();
+        lvl = cameraP.GetComponent<LevelManager>();
 
-        orgPos = transform.position;
-        orgRot = transform.rotation;
+        //orgPos = transform.position;
+
 
         hitPos = transform.position;
         hitPos.y = hitPos.y + hitPosYOff;
@@ -69,7 +71,7 @@ public class TiltedBookControler : MonoBehaviour
         {
             if (!look)
             {
-                camScript.setCurrObject(this.gameObject);
+                lvl.interuptCamera(this.gameObject, 10);
                 look = true;
             }
 

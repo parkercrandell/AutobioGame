@@ -631,6 +631,7 @@
     <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\ControlerManager.cs" />
     <Compile Include="Assets\GundamControler.cs" />
+    <Compile Include="Assets\LevelManager.cs" />
     <Compile Include="Assets\PhoneScript.cs" />
     <Compile Include="Assets\PushBookControler.cs" />
     <Compile Include="Assets\sphereMovement.cs" />

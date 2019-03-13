@@ -35,16 +35,17 @@ public class GundamControler : MonoBehaviour
     {
         v = thisRigidBody.velocity;
 
-        if (myControlerManager.getAwake() && Input.GetKeyDown(KeyCode.RightArrow) && v == Vector3.zero)
+        if (myControlerManager.getAwake() && Input.GetKeyDown(KeyCode.RightArrow) && v.x > -0.5 && v.y > -0.5 && v.z > -0.5)
         {
             thisRigidBody.AddForce(transform.forward * forceMultiplier, ForceMode.Impulse);
             Debug.Log("R");
         }
 
-        if (myControlerManager.getAwake() && Input.GetKeyDown(KeyCode.LeftArrow) && v == Vector3.zero)
+        if (myControlerManager.getAwake() && Input.GetKeyDown(KeyCode.LeftArrow) && v.x < 0.5 && v.y < 0.5 && v.z < 0.5)
         {
-            thisRigidBody.AddForce(transform.forward * -forceMultiplier, ForceMode.Impulse);
+            thisRigidBody.AddForce(-transform.forward * forceMultiplier, ForceMode.Impulse);
             Debug.Log("L");
         }
+
     }
 }

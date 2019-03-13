@@ -44,6 +44,7 @@ public class CameraControl : MonoBehaviour
         lampT = lamp.GetComponent<Transform>();
         //myScript = player.GetComponent<sphereMovement>();
         curr = comp;
+
     }
 
     void Update()
@@ -89,11 +90,6 @@ public class CameraControl : MonoBehaviour
                 startLerp(book);
             }
         }
-        else
-        {
-            //curr = myScript.getCurrObject();
-            startLerp(curr);
-        }
 
         if (start)
         {
@@ -121,11 +117,13 @@ public class CameraControl : MonoBehaviour
     {
         Debug.Log("switch");
         curr = g;
+        startLerp(curr);
     }
 
     public void resetCurr()
     {
         curr = comp;
+        startLerp(curr);
     }
 
 }

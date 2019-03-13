@@ -23,12 +23,13 @@ public class ControlerManager : MonoBehaviour
         playerTrigger = this.gameObject;
         theScript = player.GetComponent<sphereMovement>();
         pCamera = GameObject.Find("Camera");
-        playerTrigger.transform.LookAt(pCamera.transform);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //playerTrigger.
+        transform.LookAt(pCamera.transform);
         delayTimerTick();
         //checks if the object the player selected was *this one*
         if(Input.GetKey(KeyCode.Space) && theScript.getCurrObject().Equals(this.gameObject) && !awake && outputDelayTimer > outputDelay)

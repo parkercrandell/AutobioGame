@@ -17,6 +17,10 @@ public class PhoneScript : MonoBehaviour
     public float flashDuration;
     public float flashActivation;
 
+    public bool flashStart = false;
+
+    public bool offTable = false;
+
     public GameObject cameraP;
     public CameraControl camScript;
 
@@ -35,14 +39,22 @@ public class PhoneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         flashTimer += Time.deltaTime;
-        if(!flash && (flashTimer > flashActivation)){
+        
+        if(transform.position.y < 1.1)
+        {
+            offTable = true;
+        }
+
+        if (!flash && flashStart){
             flash = true;
             flashTimer = 0;
             camScript.setCurrObject(this.gameObject);
-        } else if(flash && (flashTimer > flashDuration))
+        }else if(flash && (flashTimer > flashDuration))
         {
             flash = false;
+            flashStart = false;
             flashTimer = 0;
             camScript.resetCurr();
         }
@@ -66,4 +78,39 @@ public class PhoneScript : MonoBehaviour
             myRigidbody.AddForce(Vector3.right * forceMultiplier, ForceMode.Impulse);
         }
     }
+
+    public void flashPhone()
+    {
+        flashStart = true;
+    }
+
+    public bool getOffTable()
+    {
+        return offTable;
+    }
+
+    /*
+     flashTimer += Time.deltaTime;
+        if (!flash && (flashTimer > flashActivation)){
+            flash = true;
+            flashTimer = 0;
+            camScript.setCurrObject(this.gameObject);
+        }else if(flash && (flashTimer > flashDuration))
+        {
+            flash = false;
+            flashTimer = 0;
+            camScript.resetCurr();
+        }
+
+
+        if (flash)
+        {
+            float lerp = Mathf.PingPong(Time.time, flashSpeed) / flashSpeed;
+            org.color = Color.Lerp(orgColor, Color.white, lerp);
+        }
+        else
+        {
+            org.color = orgColor;
+        }
+        */
 }
