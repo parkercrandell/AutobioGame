@@ -41,7 +41,7 @@ public class CameraControl : MonoBehaviour
     {
         thisRigidBody = GetComponent<Rigidbody>();
         gumbandTran = gumband.GetComponent<Transform>();
-        lampT = lamp.GetComponent<Transform>();
+        //lampT = lamp.GetComponent<Transform>();
         //myScript = player.GetComponent<sphereMovement>();
         curr = comp;
 

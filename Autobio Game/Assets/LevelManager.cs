@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -25,8 +26,23 @@ public class LevelManager : MonoBehaviour
     public float time = 0;
     public float flashDuration = 4;
 
+    public string minS;
+    public float min;
+    public string hourS;
+    public float hour;
+    public float timer = 0;
+
+    public TextMesh timerText;
+
+    public GameObject cloud;
+    public Vector3 cloudScale = new Vector3(0.2143489f, 0.1607764f,0.15f);
+    public TextMesh playerText;
+    public string introT = "Okay, I should really \nget this essay done \n before it gets late!";
+    public string phoneT = "Why am I looking at my \nphone?! I really need \n to focus!!";
+
     void Start()
     {
+        
         cameraP = GameObject.Find("Camera");
         camScript = cameraP.GetComponent<CameraControl>();
 
@@ -37,12 +53,30 @@ public class LevelManager : MonoBehaviour
 
         directCamera(computer);
 
-
     }
 
     void Update()
     {
-        if(pauseTimer > pauseDuration)
+        timer += Time.deltaTime;
+
+        minS = (timer % 60f).ToString("00");
+        min = (timer % 60f);
+        hourS = Mathf.Floor((timer / 60f) +9).ToString("00");
+        hour = Mathf.Floor((timer / 60f));
+
+        if((timer/ 60f) < 0.10f)
+        {
+            cloud.transform.localScale = cloudScale;
+        }
+        else
+        {
+            cloud.transform.localScale = Vector3.zero;
+        }
+
+
+        timerText.text = (string.Format("{0}:{1}", hourS, minS));
+
+        if (pauseTimer > pauseDuration)
         {
             pause = false;
             pauseDuration = orgPauseDuration;
