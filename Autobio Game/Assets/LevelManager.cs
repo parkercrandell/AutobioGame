@@ -37,8 +37,12 @@ public class LevelManager : MonoBehaviour
     public GameObject cloud;
     public Vector3 cloudScale = new Vector3(0.2143489f, 0.1607764f,0.15f);
     public TextMesh playerText;
-    public string introT = "Okay, I should really \nget this essay done \n before it gets late!";
-    public string phoneT = "Why am I looking at my \nphone?! I really need \n to focus!!";
+    private string introT = "Okay, I should really \nget this essay done \nbefore it gets late!";
+    private string phoneT = "Why am I looking at my \nphone?! I really need \nto focus!!";
+    private string moveT = "What am I doing? I got \nto find a way to get this \nphone off my desk!";
+    private string clueT = "I need to move some of \nthis stuff off my desk! \nTimes running out!";
+    private string endT = "Oh no! I'm falling asleep\n this is going to ruin \nmy whole week!";
+    private string winT = "YYYYYYYYYYYYYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS";
 
     void Start()
     {
@@ -64,13 +68,42 @@ public class LevelManager : MonoBehaviour
         hourS = Mathf.Floor((timer / 60f) +9).ToString("00");
         hour = Mathf.Floor((timer / 60f));
 
-        if((timer/ 60f) < 0.10f)
+        if (firstLvl)
         {
-            cloud.transform.localScale = cloudScale;
+            if (timer < 5f)
+            {
+                cloud.transform.localScale = cloudScale;
+                playerText.text = introT;
+            }
+            else if (timer > 15f && timer < 20f)
+            {
+                cloud.transform.localScale = cloudScale;
+                playerText.text = phoneT;
+            }
+            else if (timer > 50f && timer < 55f)
+            {
+                cloud.transform.localScale = cloudScale;
+                playerText.text = moveT;
+            }
+            else if (timer > 80f && timer < 85f)
+            {
+                cloud.transform.localScale = cloudScale;
+                playerText.text = clueT;
+            }
+            else if (timer > (60f * 3))
+            {
+                cloud.transform.localScale = cloudScale;
+                playerText.text = endT;
+            }
+            else
+            {
+                cloud.transform.localScale = Vector3.zero;
+            }
         }
         else
         {
-            cloud.transform.localScale = Vector3.zero;
+            cloud.transform.localScale = cloudScale;
+            playerText.text = winT;
         }
 
 
