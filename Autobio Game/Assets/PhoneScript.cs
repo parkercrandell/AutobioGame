@@ -23,6 +23,8 @@ public class PhoneScript : MonoBehaviour
 
     public GameObject cameraP;
     public CameraControl camScript;
+    public AudioSource sfx;
+    public AudioClip hmmmm;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,7 @@ public class PhoneScript : MonoBehaviour
 
         cameraP = GameObject.Find("Camera");
         camScript = cameraP.GetComponent<CameraControl>();
-
+        sfx = transform.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,16 +44,19 @@ public class PhoneScript : MonoBehaviour
         
         flashTimer += Time.deltaTime;
         
-        if(transform.position.y < 1.1)
+        if(transform.position.y < 0.8f)
         {
             offTable = true;
         }
 
         if (!flash && flashStart){
+            sfx.Play();
             flash = true;
             flashTimer = 0;
             camScript.setCurrObject(this.gameObject);
-        }else if(flash && (flashTimer > flashDuration))
+            sfx.PlayOneShot(hmmmm);
+        }
+        else if(flash && (flashTimer > flashDuration))
         {
             flash = false;
             flashStart = false;

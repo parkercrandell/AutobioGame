@@ -27,6 +27,8 @@ public class TiltedBookControler : MonoBehaviour
     public Vector3 hitPos;
     public float hitPosYOff = 1.3f;
     public float hitPosXOff = 0.2f;
+    public AudioSource sfx;
+    public AudioClip hmmmm;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,7 @@ public class TiltedBookControler : MonoBehaviour
 
         cameraP = GameObject.Find("Camera");
         lvl = cameraP.GetComponent<LevelManager>();
+        sfx = transform.GetComponent<AudioSource>();
 
         //orgPos = transform.position;
 
@@ -72,6 +75,7 @@ public class TiltedBookControler : MonoBehaviour
             if (!look)
             {
                 lvl.interuptCamera(this.gameObject, 10);
+                sfx.PlayOneShot(hmmmm);
                 look = true;
             }
 

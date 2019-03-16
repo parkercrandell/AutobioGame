@@ -58,7 +58,7 @@ public class PushBookControler : MonoBehaviour
     void FixedUpdate()
     {
 
-       if (myControlerManager.getAwake() && Input.anyKeyDown && !back && !push)
+       if (myControlerManager.getAwake() && Input.anyKeyDown && !Input.GetKey(KeyCode.Space) && !back && !push)
        {
             push = true;
             lerpTimerStart();

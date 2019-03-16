@@ -15,6 +15,10 @@ public class ControlerManager : MonoBehaviour
     public bool delayTimerOn = true;
 
     public GameObject pCamera;
+
+    public GameObject cameraP;
+    public LevelManager lvl;
+
     //controler each object has so player can activate and deactivate objects and interface with their unique controler scripts
 
     void Start()
@@ -23,28 +27,35 @@ public class ControlerManager : MonoBehaviour
         playerTrigger = this.gameObject;
         theScript = player.GetComponent<sphereMovement>();
         pCamera = GameObject.Find("Camera");
+
+        cameraP = GameObject.Find("Camera");
+        lvl = cameraP.GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //playerTrigger.
-        transform.LookAt(pCamera.transform);
-        delayTimerTick();
-        //checks if the object the player selected was *this one*
-        if(Input.GetKey(KeyCode.Space) && theScript.getCurrObject().Equals(this.gameObject) && !awake && outputDelayTimer > outputDelay)
+        if (!lvl.getStart())
         {
-            awake = true;
-            theScript.deactivatePlayer();
-            Debug.Log("off");
-            delayTimerReset();
-        }else if (Input.GetKey(KeyCode.Space) && awake && outputDelayTimer > outputDelay)
-        {
-            //if player presses space it toggles the controler off
-            awake = false;
-            theScript.activatePlayer();
-            Debug.Log("on");
-            delayTimerReset();
+            //playerTrigger.
+            transform.LookAt(pCamera.transform);
+            delayTimerTick();
+            //checks if the object the player selected was *this one*
+            if (Input.GetKey(KeyCode.Space) && theScript.getCurrObject().Equals(this.gameObject) && !awake && outputDelayTimer > outputDelay)
+            {
+                awake = true;
+                theScript.deactivatePlayer();
+                Debug.Log("off");
+                delayTimerReset();
+            }
+            else if (Input.GetKey(KeyCode.Space) && awake && outputDelayTimer > outputDelay)
+            {
+                //if player presses space it toggles the controler off
+                awake = false;
+                theScript.activatePlayer();
+                Debug.Log("on");
+                delayTimerReset();
+            }
         }
     }
 
